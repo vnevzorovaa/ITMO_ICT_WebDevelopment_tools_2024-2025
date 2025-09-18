@@ -1,0 +1,10 @@
+site_name: "Невзорова Вероника"
+nav:
+ - Home: index.md
+ - Page2: page2.md
+ - Section1:
+   - Subpage1: subpage1.md
+   - Subpage2: subpage2.md
+theme:
+ name: readthedocs
+

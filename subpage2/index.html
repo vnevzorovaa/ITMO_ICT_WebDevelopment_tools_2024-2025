@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Лабораторная работа 2 - Невзорова Вероника</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 2";
+        var mkdocs_page_input_path = "subpage2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Невзорова Вероника
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Лабораторные работы</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../subpage1/">Лабораторная работа 1</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Лабораторная работа 2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-1-1013">Задание 1. Сумма чисел от 1 до 10^13</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-">Задание 2. Параллельный парсинг веб-страниц</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../subpage3/">Лабораторная работа 3</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Невзорова Вероника</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Лабораторные работы</li>
+      <li class="breadcrumb-item active">Лабораторная работа 2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <hr />
+<h2 id="_1">Сравнение и выводы</h2>
+<h3 id="1-1-1013">Задание 1. Сумма чисел от 1 до 10^13</h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Время (с)</th>
+<th>Пояснение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Asyncio</strong></td>
+<td>4.82</td>
+<td>Асинхронность не помогает для CPU-bound задач, GIL мешает.</td>
+</tr>
+<tr>
+<td><strong>Threading</strong></td>
+<td>4.73</td>
+<td>Потоки конкурируют за GIL, прироста нет.</td>
+</tr>
+<tr>
+<td><strong>Multiprocessing</strong></td>
+<td>2.25</td>
+<td>Реальное ускорение за счёт параллельного выполнения на нескольких ядрах.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Выводы:</strong><br />
+- <strong>Threading</strong> и <strong>Asyncio</strong> бесполезны для тяжёлых вычислений из-за GIL.<br />
+- <strong>Multiprocessing</strong> — лучший вариант для задач, нагружающих CPU.<br />
+- Для <strong>IO-bound задач</strong> подойдут <strong>Asyncio</strong> или <strong>Threading</strong>.<br />
+- Деление задачи на сегменты (chunking) — простой и эффективный способ распараллеливания.  </p>
+<hr />
+<h3 id="2-">Задание 2. Параллельный парсинг веб-страниц</h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Время (с)</th>
+<th>Пояснение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Asyncio + aiohttp</strong></td>
+<td>1.185</td>
+<td>Очень быстрый: все запросы обрабатываются параллельно в одном потоке.</td>
+</tr>
+<tr>
+<td><strong>Threading</strong></td>
+<td>2.036</td>
+<td>Потоки тоже ждут сеть, но их управление чуть тяжелее.</td>
+</tr>
+<tr>
+<td><strong>Multiprocessing</strong></td>
+<td>2.605</td>
+<td>Создание процессов накладно, для IO-bound задач почти не даёт выигрыша.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Выводы:</strong><br />
+- Для <strong>сетевых задач и работы с БД (IO-bound)</strong> лучше всего подходит <strong>Asyncio</strong>: минимальная задержка, высокая эффективность.<br />
+- <strong>Threading</strong> немного хуже, но проще в реализации.<br />
+- <strong>Multiprocessing</strong> не даёт преимуществ и только замедляет из-за накладных расходов.<br />
+- Для <strong>CPU-bound задач</strong> (математика, расчёты) лучше <strong>Multiprocessing</strong>, для <strong>IO-bound</strong> (сеть, файлы, БД) — <strong>Asyncio</strong>.<br />
+- Важно правильно делить задачи на чанки (URL-списки, диапазоны чисел) для равномерной загрузки.  </p>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../subpage1/" class="btn btn-neutral float-left" title="Лабораторная работа 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../subpage3/" class="btn btn-neutral float-right" title="Лабораторная работа 3">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../subpage1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../subpage3/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
